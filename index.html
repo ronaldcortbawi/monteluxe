@@ -82,8 +82,8 @@ img,video{display:block; max-width:100%}
 .hero .eyebrow{animation:rise 1.2s .15s cubic-bezier(.2,.7,.2,1) both}
 .gold-text{background:linear-gradient(100deg,var(--gold-lo),var(--gold-hi) 35%,var(--gold) 60%,var(--gold-hi));
   -webkit-background-clip:text; background-clip:text; color:transparent}
-.hero h1{font-family:var(--serif); font-weight:400; font-size:clamp(32px,min(5vw,6.4vh),58px); line-height:1.08; letter-spacing:.005em;
-  max-width:18ch; margin:18px auto 0; text-wrap:balance; animation:rise 1.2s .25s cubic-bezier(.2,.7,.2,1) both}
+.hero h1{font-family:var(--serif); font-weight:400; font-size:clamp(30px,min(5vw,6.4vh),58px); line-height:1.12; letter-spacing:.005em;
+  max-width:none; margin:18px auto 0; text-wrap:balance; animation:rise 1.2s .25s cubic-bezier(.2,.7,.2,1) both}
 .hero .lead{max-width:36rem; margin:18px auto 0; text-wrap:pretty; color:var(--muted); font-size:clamp(14.5px,1.5vw,16px); line-height:1.75; animation:rise 1.2s .35s cubic-bezier(.2,.7,.2,1) both}
 .hero .cta{display:flex; flex-wrap:wrap; justify-content:center; gap:12px; margin-top:28px; animation:rise 1.2s .45s cubic-bezier(.2,.7,.2,1) both}
 .tags{list-style:none; display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin-top:30px; animation:rise 1.2s .55s cubic-bezier(.2,.7,.2,1) both}
@@ -94,7 +94,7 @@ img,video{display:block; max-width:100%}
 .section{padding:clamp(48px,8vh,88px) 0}
 .sec-head{display:flex; flex-wrap:wrap; align-items:flex-end; justify-content:space-between; gap:18px 30px; margin-bottom:clamp(24px,4vh,40px)}
 .sec-head .eyebrow::before{display:none}
-.sec-head h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,3.8vw,44px); line-height:1.1; margin-top:10px}
+.h2,.sec-head h2,.about h2,.contact h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,3.6vw,42px); line-height:1.12; letter-spacing:.005em; margin-top:12px; text-wrap:balance}
 .chips{display:flex; flex-wrap:wrap; gap:8px}
 .chip{font-family:var(--sans); font-size:11px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--muted);
   background:rgba(11,11,12,.55); border:1px solid var(--line-soft); border-radius:999px; padding:8px 16px; cursor:pointer; transition:all .2s}
@@ -103,13 +103,15 @@ img,video{display:block; max-width:100%}
 
 /* ---------- Listings ---------- */
 .listings{display:grid; gap:clamp(22px,3.5vh,36px)}
-.listing.has-video{grid-template-columns:minmax(0,4fr) minmax(0,7fr)}
 .listing{display:grid; grid-template-columns:minmax(0,5fr) minmax(0,7fr); background:var(--panel); border:1px solid var(--line-soft); border-radius:6px;
   overflow:hidden; backdrop-filter:blur(6px); -webkit-backdrop-filter:blur(6px); position:relative}
 .listing::before{content:""; position:absolute; top:-1px; left:-1px; width:22px; height:22px; border:1px solid var(--gold); border-right:0; border-bottom:0; z-index:2; pointer-events:none}
 .listing[hidden]{display:none}
-.media{position:relative; background:#060606; min-height:100%}
-.media img,.media video{width:100%; height:100%; object-fit:cover; object-position:center top}
+.media{position:relative; background:#060606; min-height:520px}
+.media{overflow:hidden; isolation:isolate}
+.media::before{content:""; position:absolute; inset:-30px; z-index:-1; background:var(--bg-img) center/cover no-repeat; filter:blur(22px) brightness(.45) saturate(1.1)}
+.media img,.media video{position:absolute; inset:0; width:100%; height:100%; object-fit:contain; object-position:center}
+.media-zoom{position:absolute !important; inset:0}
 .media-zoom{all:unset; display:block; width:100%; height:100%; cursor:zoom-in}
 .media-zoom:focus-visible{outline:2px solid var(--gold-hi); outline-offset:-4px}
 .media .hint{position:absolute; left:14px; bottom:14px; display:inline-flex; align-items:center; gap:8px; font-size:10px; font-weight:500; letter-spacing:.2em; text-transform:uppercase;
@@ -121,24 +123,24 @@ img,video{display:block; max-width:100%}
 .sound svg{width:18px; height:18px}
 .sound .on{display:none} .sound[aria-pressed="true"] .on{display:block} .sound[aria-pressed="true"] .off{display:none}
 
-.info{padding:clamp(22px,3.2vw,40px); display:flex; flex-direction:column; gap:18px; min-width:0}
+.info{padding:clamp(22px,3vw,36px); display:flex; flex-direction:column; gap:16px; min-width:0}
 .badges{display:flex; flex-wrap:wrap; gap:8px}
 .badge{font-size:10px; font-weight:500; letter-spacing:.22em; text-transform:uppercase; border-radius:2px; padding:5px 10px; color:var(--gold); border:1px solid var(--line)}
 .badge.solid{color:#15110a; background:var(--gold); border-color:var(--gold)}
 .loc{display:flex; align-items:center; gap:8px; font-size:11.5px; font-weight:500; letter-spacing:.26em; text-transform:uppercase; color:var(--muted)}
 .loc svg{width:14px; height:14px; color:var(--gold); flex:none}
-.listing h3{font-family:var(--serif); font-weight:400; font-size:clamp(25px,2.6vw,34px); line-height:1.15; text-wrap:balance; margin-top:-6px}
-.tagline{font-family:var(--serif); font-style:italic; color:var(--gold-hi); font-size:17px; line-height:1.5; margin-top:-8px}
+.listing h3{font-family:var(--serif); font-weight:400; font-size:clamp(24px,2.4vw,31px); line-height:1.18; text-wrap:balance; margin-top:-4px}
+.tagline{font-family:var(--serif); font-style:italic; color:var(--gold-hi); font-size:17px; line-height:1.5; margin-top:-6px}
 .price{display:flex; flex-wrap:wrap; align-items:baseline; gap:6px 16px; padding:16px 0; border-top:1px solid var(--line-soft); border-bottom:1px solid var(--line-soft)}
 .price .amt{font-family:var(--serif); font-size:clamp(30px,3.2vw,40px); line-height:1}
 .price .per{font-size:13px; color:var(--muted); letter-spacing:.04em}
 .price .per b{color:var(--ink); font-weight:500}
-.specs{list-style:none; display:grid; grid-template-columns:repeat(auto-fit,minmax(118px,1fr)); gap:10px}
+.specs{list-style:none; display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:10px}
 .specs li{border:1px solid var(--line-soft); border-radius:4px; padding:12px 14px; background:rgba(255,255,255,.015)}
-.specs .v{display:block; font-family:var(--serif); font-size:21px; line-height:1.15; color:var(--ink)}
+.specs .v{display:block; font-family:var(--serif); font-size:clamp(17px,1.5vw,20px); line-height:1.2; color:var(--ink); white-space:nowrap}
 .specs .k{display:block; margin-top:4px; font-size:9.5px; font-weight:500; letter-spacing:.2em; text-transform:uppercase; color:var(--muted)}
-.desc{color:#cbc3b4; font-size:15px; line-height:1.75; text-wrap:pretty; max-width:62ch}
-.feats{list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:9px 22px; font-size:14px; color:var(--ink)}
+.desc{color:#cbc3b4; font-size:14.5px; line-height:1.75; text-wrap:pretty}
+.feats{list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:8px 22px; font-size:14px; color:var(--ink)}
 .feats li{display:flex; gap:10px; align-items:flex-start; line-height:1.5}
 .feats li::before{content:""; flex:none; width:7px; height:7px; margin-top:.55em; transform:rotate(45deg); border:1px solid var(--gold)}
 details.ar{border:1px solid var(--line-soft); border-radius:4px; background:rgba(255,255,255,.015)}
@@ -151,16 +153,17 @@ details.ar[open] summary svg{transform:rotate(180deg)}
 .ar-body{direction:rtl; text-align:right; font-family:var(--arabic); padding:4px 18px 16px; font-size:15px; line-height:1.9; color:var(--ink)}
 .ar-body ul{list-style:none; display:grid; gap:4px}
 .ar-body li::before{content:"◆"; color:var(--gold); font-size:9px; margin-left:10px; vertical-align:2px}
-.actions{display:flex; flex-wrap:wrap; gap:10px; margin-top:auto; padding-top:4px}
+.actions{display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px; margin-top:auto; padding-top:6px; max-width:420px}
+.contact .actions{margin-left:auto; margin-right:auto; width:100%; max-width:380px}
 
 /* ---------- About / services ---------- */
-.about{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px,5vw,72px); align-items:start}
+.about{display:grid; grid-template-columns:minmax(0,1fr) minmax(0,1fr); gap:clamp(28px,5vw,72px); align-items:center}
 .about .eyebrow::before{display:none}
-.about h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,3.8vw,44px); line-height:1.1; margin:10px 0 18px}
-.about p{color:#cbc3b4; font-size:15.5px; line-height:1.8; text-wrap:pretty}
-.about p+p{margin-top:14px}
+.about h2{margin-bottom:18px}
+.about p:not(.eyebrow){color:#cbc3b4; font-size:15.5px; line-height:1.8; text-wrap:pretty}
+.about p:not(.eyebrow)+p{margin-top:14px}
 .services{list-style:none; display:grid; grid-template-columns:repeat(2,minmax(0,1fr)); gap:10px}
-.services li{background:var(--panel); border:1px solid var(--line-soft); border-radius:4px; padding:16px 18px}
+.services li{background:var(--panel); border:1px solid var(--line-soft); border-radius:4px; padding:18px 20px; min-height:100%}
 .services b{display:block; font-family:var(--serif); font-weight:400; font-size:19px; color:var(--ink)}
 .services span{display:block; margin-top:3px; font-size:12.5px; color:var(--muted); line-height:1.5}
 
@@ -169,7 +172,7 @@ details.ar[open] summary svg{transform:rotate(180deg)}
 .contact::before,.contact::after{content:""; position:absolute; width:22px; height:22px; border:1px solid var(--gold); pointer-events:none}
 .contact::before{top:-1px; left:-1px; border-right:0; border-bottom:0}
 .contact::after{bottom:-1px; right:-1px; border-left:0; border-top:0}
-.contact h2{font-family:var(--serif); font-weight:400; font-size:clamp(28px,3.6vw,42px); line-height:1.1; margin-top:12px}
+
 .contact .name{font-family:var(--serif); font-size:22px; margin-top:22px}
 .contact .phone{display:inline-block; margin-top:4px; font-weight:500; font-size:20px; letter-spacing:.12em; color:var(--gold); text-decoration:none}
 .contact .phone:hover{color:var(--gold-hi)}
@@ -192,13 +195,42 @@ footer b{font-weight:500; color:var(--muted)}
 
 /* ---------- Tablet & phone ---------- */
 @media (max-width:900px){
-  .listing,.listing.has-video{grid-template-columns:1fr}
-  .media{max-height:min(78vh,720px); overflow:hidden}
-  .media.video{max-height:none; aspect-ratio:9/12}
+  .listing{grid-template-columns:1fr}
+  .media,.media.video{min-height:0; aspect-ratio:4/5}
   .about{grid-template-columns:1fr}
 }
 @media (max-width:599px){
+  html{scroll-padding-top:72px}
   .top .wrap{height:60px}
+  .hero{min-height:calc(100svh - 60px); padding:28px 0 clamp(130px,22vh,190px)}
+  .hero .logo{width:min(300px,78vw); margin-bottom:18px}
+  .hero h1{font-size:clamp(27px,7.6vw,32px); margin-top:14px}
+  .hero .lead{font-size:14.5px; line-height:1.7; margin-top:14px}
+  .hero .cta{display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:22px}
+  .hero .cta .btn{padding:0 12px; letter-spacing:.14em}
+  .section{padding:44px 0}
+  .sec-head{margin-bottom:20px; gap:16px}
+  .chips{width:100%}
+  .chip{flex:1; padding:9px 8px; letter-spacing:.14em; text-align:center}
+  .info{padding:20px 18px 22px; gap:14px}
+  .loc{font-size:10.5px; letter-spacing:.18em}
+  .listing h3{font-size:24px}
+  .tagline{font-size:16px}
+  .price{padding:12px 0}
+  .price .amt{font-size:30px}
+  .specs{gap:8px}
+  .specs li{padding:10px 12px}
+  .specs .v{font-size:18px}
+  .desc{font-size:14.5px}
+  .feats{gap:7px}
+  details.ar summary{padding:12px 14px}
+  .ar-body{padding:2px 14px 14px}
+  .media .hint{left:10px; bottom:10px}
+  .sound{right:10px; bottom:10px}
+  .about h2{font-size:28px}
+  .services li{padding:16px 18px}
+  .contact{padding:30px 18px}
+  .contact .actions{max-width:none}
   .brand img{height:30px}
   .nav a:not(.btn){display:none}
   .eyebrow{font-size:10px; letter-spacing:.34em; gap:10px}
@@ -206,7 +238,7 @@ footer b{font-weight:500; color:var(--muted)}
   .tags li{font-size:9.5px; letter-spacing:.18em; padding:6px 10px 6px 12px}
   .feats{grid-template-columns:1fr}
   .services{grid-template-columns:1fr}
-  .actions .btn{flex:1}
+  .actions{max-width:none}
   .specs{grid-template-columns:repeat(2,minmax(0,1fr))}
   footer{font-size:9.5px; letter-spacing:.18em}
 }
@@ -288,7 +320,7 @@ body{position:relative}
     <div class="wrap">
       <img class="logo" src="assets/monteluxe-logo.png" width="1449" height="478" alt="">
       <p class="eyebrow">Real estate agency · Lebanon</p>
-      <h1 class="gold-text">More than properties. A brighter tomorrow.</h1>
+      <h1 class="gold-text">More than properties.<br> A brighter tomorrow.</h1>
       <p class="lead">MonteLuxe is a full real estate services company. We handle sales, purchases, rentals and investments across every type of property, from city apartments to mountain land.</p>
       <div class="cta">
         <a class="btn btn-gold" href="#properties">View properties</a>
@@ -315,7 +347,7 @@ body{position:relative}
 
         <!-- ===== Listing: Zouk Mosbeh – Adonis apartment ===== -->
         <article class="listing has-video" id="zouk-mosbeh-adonis" data-type="apartment">
-          <div class="media video">
+          <div class="media video" style="--bg-img:url(assets/listings/zouk-mosbeh-adonis.jpg)">
             <video src="assets/listings/zouk-mosbeh-adonis.mp4" poster="assets/listings/zouk-mosbeh-adonis.jpg" autoplay muted loop playsinline preload="metadata" aria-label="Video tour of the Zouk Mosbeh – Adonis apartment"></video>
             <button class="sound" type="button" aria-pressed="false" aria-label="Turn sound on">
               <svg class="off" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 5 6 9H2v6h4l5 4V5z"/><path d="m23 9-6 6M17 9l6 6"/></svg>
@@ -324,8 +356,8 @@ body{position:relative}
           </div>
           <div class="info">
             <div class="badges"><span class="badge solid">For sale</span><span class="badge">Apartment</span></div>
-            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Zouk Mosbeh – Adonis</p>
-            <h3>Spacious 190 m² apartment in Adonis</h3>
+            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Zouk Mosbeh – Adonis · Keserwan</p>
+            <h3>190 m² apartment in Zouk Mosbeh – Adonis</h3>
             <p class="tagline">Your next home in Adonis could be closer than you think.</p>
             <div class="price"><span class="amt gold-text">$200,000</span><span class="per">190 m² · <b>3 bedrooms</b></span></div>
             <ul class="specs">
@@ -362,7 +394,7 @@ body{position:relative}
               </div>
             </details>
             <div class="actions">
-              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call 03 111 997</a>
+              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
               <a class="btn btn-line" href="https://wa.me/9613111997?text=Hello%20MonteLuxe%2C%20I%27m%20interested%20in%20the%20190%20m%C2%B2%20apartment%20in%20Zouk%20Mosbeh%20%E2%80%93%20Adonis%20(%24200%2C000)." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
             </div>
           </div>
@@ -370,7 +402,7 @@ body{position:relative}
 
         <!-- ===== Listing: Sannine land ===== -->
         <article class="listing" id="sannine-land" data-type="land">
-          <div class="media">
+          <div class="media" style="--bg-img:url(assets/listings/sannine-land.jpg)">
             <button class="media-zoom" type="button" data-full="assets/listings/sannine-land.jpg" aria-label="View the Sannine land poster full size">
               <img src="assets/listings/sannine-land.jpg" width="1080" height="1350" alt="Snow-covered Sannine mountain above the land for sale" loading="lazy">
             </button>
@@ -378,19 +410,25 @@ body{position:relative}
           </div>
           <div class="info">
             <div class="badges"><span class="badge solid">For sale</span><span class="badge">Land</span></div>
-            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Sannine · Lebanese mountains</p>
-            <h3>2,000 m² of mountain land in Sannine</h3>
+            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Sannine · Mount Lebanon</p>
+            <h3>2,000 m² land in Sannine</h3>
             <p class="tagline">A rare opportunity in the Lebanese mountains.</p>
-            <div class="price"><span class="amt gold-text">$120 / m²</span><span class="per">2,000 m² · <b>$240,000</b> total</span></div>
+            <div class="price"><span class="amt gold-text">$240,000</span><span class="per">2,000 m² · <b>$120 / m²</b></span></div>
             <ul class="specs">
               <li><span class="v">2,000 m²</span><span class="k">Land size</span></li>
               <li><span class="v">25% / 50%</span><span class="k">Zoning</span></li>
               <li><span class="v">40 m</span><span class="k">Road frontage</span></li>
-              <li><span class="v">Panoramic</span><span class="k">Mountain view</span></li>
+              <li><span class="v">Panoramic</span><span class="k">View</span></li>
             </ul>
             <p class="desc">A unique opportunity to own 2,000 m² of land in Sannine, surrounded by breathtaking panoramic views and the beauty of the Lebanese mountains. With a prime setting and generous road frontage, it is the perfect canvas for your own mountain retreat or an investment.</p>
+            <ul class="feats" aria-label="Land features">
+              <li>2,000 m² of land</li>
+              <li>25% / 50% zoning</li>
+              <li>40 m road frontage</li>
+              <li>Panoramic mountain views</li>
+            </ul>
             <div class="actions">
-              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call 03 111 997</a>
+              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
               <a class="btn btn-line" href="https://wa.me/9613111997?text=Hello%20MonteLuxe%2C%20I%27m%20interested%20in%20the%202%2C000%20m%C2%B2%20land%20in%20Sannine%20(%24120%2Fm%C2%B2)." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
             </div>
           </div>
@@ -398,7 +436,7 @@ body{position:relative}
 
         <!-- ===== Listing: Qanat Bakish land ===== -->
         <article class="listing" id="qanat-bakish-land" data-type="land">
-          <div class="media">
+          <div class="media" style="--bg-img:url(assets/listings/qanat-bakish-land.jpg)">
             <button class="media-zoom" type="button" data-full="assets/listings/qanat-bakish-land.jpg" aria-label="View the Qanat Bakish land poster full size">
               <img src="assets/listings/qanat-bakish-land.jpg" width="1122" height="1402" alt="The Bakish cross at sunset above a sea of clouds" loading="lazy">
             </button>
@@ -406,13 +444,13 @@ body{position:relative}
           </div>
           <div class="info">
             <div class="badges"><span class="badge solid">For sale</span><span class="badge">Land</span></div>
-            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Qanat Bakish · near Faqra Club</p>
-            <h3>1,170 m² of flat land in Qanat Bakish</h3>
+            <p class="loc"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true"><use href="#i-pin"/></svg>Qanat Bakish · Faqra area</p>
+            <h3>1,170 m² land in Qanat Bakish</h3>
             <p class="tagline">Build your dream escape, minutes from Faqra Club.</p>
             <div class="price"><span class="amt gold-text">$351,000</span><span class="per">1,170 m² · <b>$300 / m²</b></span></div>
             <ul class="specs">
               <li><span class="v">1,170 m²</span><span class="k">Land size</span></li>
-              <li><span class="v">25% – 50%</span><span class="k">Zoning</span></li>
+              <li><span class="v">25% / 50%</span><span class="k">Zoning</span></li>
               <li><span class="v">120 m</span><span class="k">Road frontage</span></li>
               <li><span class="v">Flat</span><span class="k">Terrain</span></li>
             </ul>
@@ -421,10 +459,10 @@ body{position:relative}
               <li>Panoramic Beirut, mountain &amp; sea views</li>
               <li>Flat terrain, ideal for easy construction</li>
               <li>Prime location with easy access</li>
-              <li>120 m road frontage</li>
+              <li>120 m road frontage, minutes from Faqra Club</li>
             </ul>
             <div class="actions">
-              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call 03 111 997</a>
+              <a class="btn btn-gold" href="tel:+9613111997"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><use href="#i-phone"/></svg>Call</a>
               <a class="btn btn-line" href="https://wa.me/9613111997?text=Hello%20MonteLuxe%2C%20I%27m%20interested%20in%20the%201%2C170%20m%C2%B2%20land%20in%20Qanat%20Bakish%20(%24351%2C000)." target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><use href="#i-wa"/></svg>WhatsApp</a>
             </div>
           </div>
